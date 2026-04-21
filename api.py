@@ -4,8 +4,6 @@ from agent import Agent
 
 app = FastAPI()
 agent = Agent()
-
-# ✅ CORS FIX (VERY IMPORTANT)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -16,7 +14,7 @@ app.add_middleware(
 
 @app.get("/")
 def home():
-    return {"message": "Backend is running successfully 🚀"}
+    return {"message": "Backend is running successfully "}
 
 @app.post("/chat")
 def chat(data: dict):
