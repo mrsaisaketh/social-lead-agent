@@ -12,12 +12,10 @@ class AgentState(TypedDict):
     platform: str
     response: str
 
-# 🔹 Step 1: Intent
 def intent_node(state):
     state["intent"] = detect_intent(state["user_input"])
     return state
 
-# 🔹 Step 2: Response
 def response_node(state):
 
     intent = state["intent"]
@@ -48,14 +46,13 @@ def response_node(state):
                 state["platform"]
             )
 
-            state["response"] = "Lead captured successfully 🚀"
+            state["response"] = "Lead captured successfully "
 
     else:
         state["response"] = "Can you clarify?"
 
     return state
 
-# 🔹 Build Graph
 builder = StateGraph(AgentState)
 
 builder.add_node("intent", intent_node)
@@ -67,7 +64,6 @@ builder.add_edge("response", END)
 
 graph = builder.compile()
 
-# Run loop
 if __name__ == "__main__":
     state = {
         "name": None,
